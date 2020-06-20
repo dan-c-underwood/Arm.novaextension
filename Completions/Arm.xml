@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<completions>
+    <provider>
+        <selector>arm</selector>
+        <selector>*:not(string,comment)</selector>
+        <expression>\b[a-zA-Z0-9-_]*</expression>
+        <set>arm.entities</set>
+    </provider>
+    
+    <!-- Entities -->
+    <set name="arm.entities">
+		<completion string="&quot;" />
+		<completion string="&amp;" />
+		<completion string="&apos;" />
+		<completion string="&lt;" />
+		<completion string="&gt;" />
+    </set>
+</completions>

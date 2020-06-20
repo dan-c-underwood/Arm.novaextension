@@ -1,0 +1,9 @@
+{
+    "identifier": "danu.Arm",
+    "name": "Arm",
+    "vendor": "Dan Underwood",
+    "description": "Syntax highlighting for Arm® assembly files in Nova",
+    "version": "1.0",
+    "categories": ["languages"],
+    "license": "MIT"
+}
