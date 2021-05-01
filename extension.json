@@ -3,7 +3,7 @@
     "name": "Arm",
     "organization": "Dan Underwood",
     "description": "Syntax highlighting for Arm® assembly files in Nova",
-    "version": "1.1",
+    "version": "1.1.1",
     "categories": ["languages"],
     "license": "MIT",
     "repository": "https://github.com/dan-c-underwood/Arm.novaextension",
