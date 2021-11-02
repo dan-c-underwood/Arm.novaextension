@@ -52,7 +52,7 @@
 		</scope>
 		
 		<scope name="arm.keyword.mnenomic.arithmetic">		
-			<expression>\b(?i)(?:v?(?:add|cvt|bic|sub|trn|cmp|div|qdmulh|mrs|mul|ld1|qadd|qshrun|st[1234]|addw|mull|mlal|rshrn|swp|qmovunand|m(?:rs|sr)|eor|sub|rsb|adc|sbc|rsc|and|tst|teq|cmp|cmn|orr|mov|bic|mvn|neg|lsr|lsl|ror|asr)|mul|mla|mull|smlabb|rev(?:8|16)?|pld|adr|adrl|vswp)(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
+			<expression>\b(?i)(?:v?(?:add|cvt|bic|sub|trn|cmp|[us]?div|qdmulh|mrs|mul|ld1|qadd|qshrun|st[1234]|addw|mull|mlal|rshrn|swp|qmovunand|m(?:rs|sr)|eor|sub|rsb|adc|sbc|rsc|and|tst|teq|cmp|cmn|orr|mov|bic|mvn|neg|lsr|lsl|ror|asr)|mul|mla|mull|smlabb|rev(?:8|16)?|pld|adr|adrl|vswp)(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
 			<capture number="1">
 				<scope name="arm.keyword">
 					<include syntax="self" collection="conditions" />
@@ -82,14 +82,6 @@
 				</scope>
 			</capture>
 			<capture number="2">
-				<scope name="arm.keyword">
-					<include syntax="self" collection="conditions" />
-				</scope>
-				<scope name="arm.invalid">
-					<expression>\w+</expression>
-				</scope>
-			</capture>
-			<capture number="3">
 				<scope name="arm.keyword">
 					<include syntax="self" collection="conditions" />
 				</scope>
