@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <syntax name="arm">
 	<meta>
-		<name>Arm</name>
+		<name>Arm Assembly</name>
 		<type>structured</type>
 		<preferred-file-extension>s</preferred-file-extension>
 	</meta>
@@ -43,7 +43,7 @@
 	
 	<scopes>
 		<scope name="arm.keyword.preprocessor">
-			<expression>\b(define|include|(end|el|else)?if|if(def|ndef)?|else)(\s(defined\([a-zA-Z_]+\)|[a-zA-Z_\.]+))?</expression>
+			<expression>^\s*[#\.](define|include|(end|el|else)?if|if(def|ndef)?|else)(\s+(defined\(\w+\)|\w+)(\s+(&amp;&amp;|\|\|)\s+defined\(\w+\\)|\w]+)*)?$</expression>
 		</scope>
 	
 		<scope name="arm.identifier.method.routine">
@@ -72,7 +72,47 @@
 		</scope>
 		
 		<scope name="arm.keyword.mnenomic.memory">		
-			<expression>\b(?i)(?:mov(?:w|t)?|pac(?:dz?[a|b]|ga|i(?:[a|b](?:1716|sp|z)?)|z[a|b])|swi|svc|wfi|dmb|clrex|dsb|isb|v?(?:push|pop)|b(?:l|l?x|l?r)?|(?:i|e)?ret(?:aa|ab)?|(?:st|ld)(?:p|r(?:ex|s?(?:h|b)|d)?|m(?:(?:f|e)(?:d|a)|(?:d|i)(?:b|a))?))(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
+			<expression>\b(?i)v?(?:ldr|str)(?:d(\w{2})?|(?:(?:s?b|s?h)(\w{2})?|(\w{2})(?:s?b|s?h)?))(?-i)\b</expression>
+			<capture number="1">
+				<scope name="arm.keyword">
+					<include syntax="self" collection="conditions" />
+				</scope>
+				<scope name="arm.invalid">
+					<expression>\w+</expression>
+				</scope>
+			</capture>
+			<capture number="2">
+				<scope name="arm.keyword">
+					<include syntax="self" collection="conditions" />
+				</scope>
+				<scope name="arm.invalid">
+					<expression>\w+</expression>
+				</scope>
+			</capture>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.memory">
+			<expression>\b(?i)(?:ldar[bh]?|ldax[pb(?:rh?)]|ldn?p|ldpsw|ldr[bh]?|ldrsb|ldrsh|ldrsw|ldtr[bh]?|ldtrsw|ldurb?|ldursb|ldursh|ldursw|ldx[pr]|ldxr[bh])(?-i)\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.memory">
+			<expression>\b(?i)(?:prfu?m)(?-i)\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.memory">
+			<expression>\b(?i)(?:stlr[bh]?|stlx[pb(?:rh?)]|stn?p|str[bh]?|sttr[bh]?|stur[nh]?|stx[pb(?:rh?)])(?-i)\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.memory">
+			<expression>\b(?i)(dc[dubi]|(?:[qw]u?))|area|space|fill\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.multiple.memory">
+			<expression>\b(?i)(?:ldm(?:ia)?|ldmf[da]|ldmd[ab]|ldmea|ldmib|ldmed|v?(?:push|pop)|stm(?:ia)?|stmd[ab]|stmed|stmfd|stmib|smfa(?:\.n|\.w)?)(?-i)\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.mnenomic.memory">		
+			<expression>\b(?i)(?:mov(?:w|t)?|pac(?:dz?[a|b]|ga|i(?:[a|b](?:1716|sp|z)?)|z[a|b])|swi|svc|hvc|wfi|dmb|clrex|dsb|isb|tlbi|b(?:l|l?x|l?r)?|(?:i|e)?ret(?:aa|ab)?)(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
 			<capture number="1">
 				<scope name="arm.keyword">
 					<include syntax="self" collection="conditions" />
