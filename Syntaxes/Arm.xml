@@ -43,7 +43,7 @@
 	
 	<scopes>
 		<scope name="arm.keyword.preprocessor">
-			<expression>^\s*[#\.](define|include|(end|el|else)?if|if(def|ndef)?|else)(\s+(defined\(\w+\)|\w+)(\s+(&amp;&amp;|\|\|)\s+defined\(\w+\\)|\w]+)*)?$</expression>
+			<expression>^\s*[#\.](define|include|(end|el|else)?if|if(def|ndef)?|else)(\s+(defined\(\w+\)|\w+)(\s+(&amp;&amp;|\|\|)\s+defined\(\w+\\)|\w]+)*)?/b</expression>
 		</scope>
 	
 		<scope name="arm.identifier.method.routine">
@@ -104,7 +104,7 @@
 		</scope>
 		
 		<scope name="arm.keyword.mnenomic.memory">
-			<expression>\b(?i)(dc[dubi]|(?:[qw]u?))|area|space|fill\b</expression>
+			<expression>\b(?i)(dc[dubi](?:[qw]u?)?)|area|space|fill\b</expression>
 		</scope>
 		
 		<scope name="arm.keyword.mnenomic.multiple.memory">
@@ -112,7 +112,7 @@
 		</scope>
 		
 		<scope name="arm.keyword.mnenomic.memory">		
-			<expression>\b(?i)(?:mov(?:w|t)?|pac(?:dz?[a|b]|ga|i(?:[a|b](?:1716|sp|z)?)|z[a|b])|swi|svc|hvc|wfi|dmb|clrex|dsb|isb|tlbi|b(?:l|l?x|l?r)?|(?:i|e)?ret(?:aa|ab)?)(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
+			<expression>\b(?i)(?:mov(?:w|t)?|pac(?:dz?[a|b]|ga|i(?:[a|b](?:1716|sp|z)?)|z[a|b])|swi|svc|hvc|dmb|clrex|dsb|isb|tlbi|b(?:l|l?x|l?r)?|(?:i|e)?ret(?:aa|ab)?)(?:(?:(?=s)s(\w{2})?)|(\w{2})s?)?(?-i)\b</expression>
 			<capture number="1">
 				<scope name="arm.keyword">
 					<include syntax="self" collection="conditions" />
@@ -133,6 +133,10 @@
 		
 		<scope name="arm.definition.directive">
 			<expression>\b(?i)(def(b|w|s)|equ|align\s.+\.s)(?-i)\b</expression>
+		</scope>
+		
+		<scope name="arm.keyword.directive.control.wait">
+			<expression>\b(?i)(wf[ei])(?-i)\b</expression>
 		</scope>
 	
 		<scope name="arm.keyword.directive.control">
@@ -214,7 +218,7 @@
 		<collection name="definitions">
 			<scope name="arm.variable.name">
 				<symbol type="variable" scope="local" />
-				<expression>\#?-?([a-zA-Z_][0-9a-zA-Z_]*)\b</expression>
+				<expression>(\b|#)-?([a-zA-Z_][0-9a-zA-Z_]*)\b</expression>
 			</scope>
 		</collection>	
 	
