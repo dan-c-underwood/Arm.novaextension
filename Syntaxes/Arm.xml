@@ -135,8 +135,8 @@
 			<expression>\b(?i)(def(b|w|s)|equ|align\s.+\.s)(?-i)\b</expression>
 		</scope>
 		
-		<scope name="arm.keyword.directive.control.wait">
-			<expression>\b(?i)(wf[ei])(?-i)\b</expression>
+		<scope name="arm.keyword.directive.control.cpu">
+			<expression>\b(?i)((wf[ei])|cps(i[de])?)(?-i)\b</expression>
 		</scope>
 	
 		<scope name="arm.keyword.directive.control">
